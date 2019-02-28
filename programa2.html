@@ -1,0 +1,39 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Programa 2</title>
+    <link href="css/site.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1 class="titulo_do_programa">Programa 2</h1>
+    <canvas class="modelagem-canvas">
+
+    </canvas>
+</body>
+
+</html>
+
+<script>
+
+    function desenhaQuadrado(pos_x, pos_y, color){
+
+        var tela = document.querySelector('canvas');
+        var pincel = tela.getContext('2d');
+
+        pincel.fillStyle = color;
+        pincel.fillRect(pos_x, pos_y, 50, 50);
+        pincel.fillStroke = 'black';
+        pincel.strokeRect(pos_x, pos_y, 50, 50);
+    }
+
+    for(var valor_x = 0; valor_x < 300; valor_x = valor_x + 50){
+
+        desenhaQuadrado(valor_x, 0, 'green');
+        desenhaQuadrado(valor_x, 50, 'red');
+
+    }
+   
+    
+</script>
