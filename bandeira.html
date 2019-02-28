@@ -1,0 +1,48 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bandeira</title>
+    <link href="css/site.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1 class="titulo_do_programa">Bandeira</h1>
+    <canvas class="modelagem-canvas">
+
+    </canvas>
+</body>
+
+</html>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    
+    //retagulo verde
+    pincel.fillStyle = 'green';
+    pincel.fillRect(0, 0, 600, 400)
+
+    //lozango amarelo
+    pincel.fillStyle = 'yellow';
+    pincel.beginPath();
+    pincel.moveTo(150, 20);
+    pincel.lineTo(20, 70);
+    pincel.lineTo(275, 70);
+    pincel.fill();
+
+    pincel.fillStyle = 'yellow';
+    pincel.beginPath();
+    pincel.moveTo(150, 125);
+    pincel.lineTo(20, 70);
+    pincel.lineTo(275, 70);
+    pincel.fill();
+
+    //circulo azul
+    pincel.fillStyle = 'darkblue';
+    pincel.beginPath();
+    pincel.arc(150, 72, 30, 0, 2 * 3.14);
+    pincel.fill();
+
+</script>
