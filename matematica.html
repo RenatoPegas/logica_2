@@ -1,0 +1,53 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matematica</title>
+    <link href="css/site.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1 class="titulo_do_programa">Matematica</h1>
+    <canvas class="modelagem-canvas">
+
+    </canvas>
+</body>
+
+</html>
+
+<script>
+
+    function desenhaTexto(texto, eixoX, eixoY){
+
+        var tela = document.querySelector('canvas');
+        var pincel = tela.getContext('2d');
+
+        pincel.font= '20px Georgia';
+        pincel.fillStyle= 'black';
+        pincel.fillText(texto, eixoX, eixoY);
+        
+    }
+   
+
+    function desenhaQuadrado(eixoX, eixoY, tamanho, cor){
+
+        var tela = document.querySelector('canvas');
+        var pincel = tela.getContext('2d');
+
+        pincel.fillStyle = cor;
+        pincel.fillRect(eixoX, eixoY, tamanho, tamanho);
+        pincel.strokeStyle = 'black';
+        pincel.strokeRect(eixoX, eixoY, tamanho, tamanho);
+
+    }
+
+    desenhaTexto('Qual o valor da Fração?', 10, 30)
+
+    desenhaQuadrado(10, 50, 50, 'green');
+    desenhaQuadrado(60, 50, 50, 'green');
+    desenhaQuadrado(110, 50, 50, 'green');
+    desenhaQuadrado(160, 50, 50, 'white');
+
+
+
+</script>
