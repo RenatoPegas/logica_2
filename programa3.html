@@ -1,0 +1,91 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Program 3</title>
+    <link href="css/site.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1 class="titulo_do_programa">Program 3</h1>
+    <canvas width=600 height=400 class="modelagem-canvas">
+
+    </canvas>
+</body>
+
+</html>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var draw = false;
+    var sphereColor = ['blue', 'red', 'green'];
+    var colorIndex = 0; //begin with blue
+
+    var raio = 10;
+
+    function drawSphere(event){
+
+        var posX = event.pageX - tela.offsetLeft;
+        var posY = event.pageY - tela.offsetTop;
+        
+        if(event.shiftKey && event.altKey){
+
+            alert('apertar uma tecla apenas');
+
+        }else if(event.shiftKey && raio + 10 <= 40){
+
+            raio = raio + 10;
+                
+        }else if(event.altKey && raio -5 >= 10){
+
+            raio = raio - 5;
+        }
+        if(draw){
+
+            pincel.fillStyle = sphereColor[colorIndex];
+            pincel.beginPath();
+            pincel.arc(posX, posY, raio, 0, 2 * 3.14);
+            pincel.fill();
+            console.log(posX + ' , ' + posY);
+
+        }
+        
+    }
+
+    tela.onclick = drawSphere;
+    tela.onmousemove = drawSphere;
+
+
+    function ableDraw(){
+        draw = true;
+    }
+
+    function disableDraw() {
+            draw = false;
+    }
+    
+    tela.onmouseup = disableDraw;
+    tela.onmousedown = ableDraw;
+    
+    
+    function colorChange(){
+
+        colorIndex++;
+
+        if(colorIndex >= sphereColor.length){
+            colorIndex = 0;
+        }
+
+        return false; // para não exibir o menu padrão do canvas
+    }
+
+    tela.oncontextmenu = colorChange;
+
+
+</script>
