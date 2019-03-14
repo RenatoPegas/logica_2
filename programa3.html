@@ -31,24 +31,25 @@
 
     function drawSphere(event){
 
-        var posX = event.pageX - tela.offsetLeft;
-        var posY = event.pageY - tela.offsetTop;
+        var posX = event.pageX - tela.offsetLeft;         //desconsidera a margem branca fora do canvas para a esquerda
+        var posY = event.pageY - tela.offsetTop;          //desconsidera a margem branca fora do canvas para o topo
         
-        if(event.shiftKey && event.altKey){
+        if(event.shiftKey && event.altKey){               //impede que sejam apertadas a tecla alt e shift simultaneamente
 
             alert('apertar uma tecla apenas');
 
-        }else if(event.shiftKey && raio + 10 <= 40){
+        }else if(event.shiftKey && raio + 10 <= 40){      //assim que aperta shift, poderá ser aumentado o raio mas não pode ultrapassar 40
 
             raio = raio + 10;
                 
-        }else if(event.altKey && raio -5 >= 10){
+        }else if(event.altKey && raio -5 >= 10){          //assim que aperta alt, poderá ser deminuido o raio mas não pode ser menor que 10  
 
             raio = raio - 5;
         }
-        if(draw){
 
-            pincel.fillStyle = sphereColor[colorIndex];
+        if(draw){                                          //desenha o circulo se draw for true
+
+            pincel.fillStyle = sphereColor[colorIndex];    //escolhe a cor de acordo com o que foi clicado com o botão direito do mouse 
             pincel.beginPath();
             pincel.arc(posX, posY, raio, 0, 2 * 3.14);
             pincel.fill();
@@ -58,34 +59,35 @@
         
     }
 
-    tela.onclick = drawSphere;
-    tela.onmousemove = drawSphere;
-
-
-    function ableDraw(){
-        draw = true;
-    }
-
-    function disableDraw() {
-            draw = false;
-    }
-    
-    tela.onmouseup = disableDraw;
-    tela.onmousedown = ableDraw;
-    
-    
-    function colorChange(){
-
-        colorIndex++;
-
-        if(colorIndex >= sphereColor.length){
-            colorIndex = 0;
+    function ableDraw() {
+            draw = true;
         }
 
-        return false; // para não exibir o menu padrão do canvas
-    }
+        function disableDraw() {
+            draw = false;
+        }
+    
+    function colorChange() {                                //função para mudar de cor
 
-    tela.oncontextmenu = colorChange;
+            colorIndex++;
+
+            if (colorIndex >= sphereColor.length) {         //se o colorIndex ultrapassar o tamanho do array de sphereColor, ele volta pra 0                    
+                colorIndex = 0;
+            }
+
+            return false;                                   // para não exibir o menu padrão do canvas
+        }
+
+
+
+
+    tela.onclick = drawSphere;                              //chama a função drawSphere com o click esquerdo do mouse
+    tela.onmousemove = drawSphere;                          //cria um caminho com o mouse para a esfera
+
+    tela.onmouseup = disableDraw;                           //ao desclicar com mouse, desabilita desenho
+    tela.onmousedown = ableDraw;                            //ao clicar com o mouse, habilita desenho
+    
+    tela.oncontextmenu = colorChange;                       //muda a cor da esfera com o click direito do mouse
 
 
 </script>
