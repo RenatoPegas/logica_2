@@ -1,0 +1,83 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Program 5</title>
+    <link href="css/site.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1 class="titulo_do_programa">Program 5</h1>
+    <canvas width=600 height=400 class="modelagem-canvas">
+
+    </canvas>
+</body>
+
+</html>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var raio = 10;
+    
+
+    function drawSphere(posX, posY, raio, color){
+
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(posX, posY, raio, 0, 2 * Math.PI);
+        pincel.fill();
+
+    }
+
+    function clearScreen(){
+
+        pincel.clearRect(0, 0, 600, 400);
+
+    }
+
+    function drawTarget(posX, posY){
+
+        drawSphere(posX, posY, raio + 20, 'red');
+        drawSphere(posX, posY, raio + 10, 'white');
+        drawSphere(posX, posY, 10, 'red');
+
+    }   
+
+    
+    function randomPosition(max){
+        
+        return Math.floor(Math.random() * max);
+
+    }
+
+    function updateScreen(){
+
+        clearScreen();
+        var xRandom = randomPosition(600);
+        var yRandom = randomPosition(400);
+        drawTarget(xRandom, yRandom);    
+
+    }
+
+    setInterval(updateScreen, 500);
+
+    function shoot(event){
+
+        var posX = event.pageX - tela.offsetLeft;
+        var posY = event.pageY - tela.offsetTop;
+
+        // if(){
+        //     alert('acertô miseravi');
+        // }
+
+    }
+
+    tela.onclick(shoot);
+
+    
+    
+    
+
+</script>
