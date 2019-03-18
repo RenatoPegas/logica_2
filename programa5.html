@@ -20,9 +20,11 @@
     var tela = document.querySelector('canvas');
     var pincel = tela.getContext('2d');
     var raio = 10;
+    var xRandom;
+    var yRandom;
     
 
-    function drawSphere(posX, posY, raio, color){
+    function drawSphere(posX, posY, raio, color){  //função que desenha a esfera
 
         pincel.fillStyle = color;
         pincel.beginPath();
@@ -31,13 +33,13 @@
 
     }
 
-    function clearScreen(){
+    function clearScreen(){ //limpa a tela sempre para não acumular os alvos
 
         pincel.clearRect(0, 0, 600, 400);
 
     }
 
-    function drawTarget(posX, posY){
+    function drawTarget(posX, posY){ //desenha o alvo
 
         drawSphere(posX, posY, raio + 20, 'red');
         drawSphere(posX, posY, raio + 10, 'white');
@@ -46,35 +48,35 @@
     }   
 
     
-    function randomPosition(max){
+    function randomPosition(max){ //retorna uma posição aleatoria
         
         return Math.floor(Math.random() * max);
 
     }
 
-    function updateScreen(){
+    function updateScreen(){ // sempre posiciona o alvo em um lugar diferente
 
         clearScreen();
-        var xRandom = randomPosition(600);
-        var yRandom = randomPosition(400);
+        xRandom = randomPosition(600);
+        yRandom = randomPosition(400);
         drawTarget(xRandom, yRandom);    
 
     }
 
-    setInterval(updateScreen, 500);
+    setInterval(updateScreen, 1000); //posicionara o alvo no intervalo de meio segundo
 
     function shoot(event){
 
         var posX = event.pageX - tela.offsetLeft;
         var posY = event.pageY - tela.offsetTop;
 
-        // if(){
-        //     alert('acertô miseravi');
-        // }
+        if((posX > xRandom - raio) && (posX < xRandom + raio) && (posY > yRandom - raio) && (posY < yRandom + raio) ){
+             alert('acertô miseravi');
+         }
 
     }
 
-    tela.onclick(shoot);
+    tela.onclick = shoot;
 
     
     
